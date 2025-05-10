@@ -13,12 +13,14 @@ import java.util.List;
 @Builder
 public class ProjectDTO {
         //Atributos de ProjectDTO
+    private String _id;
     private String title;
     private List<String> keywords;
     private String logoUrl;
 
         //Constructores de ProjectDTO
-    public ProjectDTO(String title, List<String> keywords, String logoUrl) {
+    public ProjectDTO(String _id, String title, List<String> keywords, String logoUrl) {
+        this._id = _id;
         this.title = title;
         this.keywords = keywords;
         this.logoUrl = logoUrl;

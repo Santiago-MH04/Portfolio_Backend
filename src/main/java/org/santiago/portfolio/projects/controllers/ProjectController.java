@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"*"})   //Para que lo pueda consumir cualquier front
+@CrossOrigin(origins = {"http://localhost:5173/"})   //Para que lo pueda consumir cualquier front
 @RequestMapping("/api/projects")
 public class ProjectController {
         //Atributos de ProjectController
@@ -42,10 +42,14 @@ public class ProjectController {
         }
             @GetMapping("/{id}")
             public ResponseEntity<Project> findById(@PathVariable String id){
-                return ResponseEntity.status(HttpStatus.FOUND)
+                /*return ResponseEntity.status(HttpStatus.OK)
                         .body(this.projectService.findById(id)
                             .orElseThrow()
-                        );
+                        );*/
+
+                return this.projectService.findById(id)
+                    .map(ResponseEntity::ok)
+                    .orElseThrow();
             }
 
     @PostMapping
