@@ -14,6 +14,7 @@ public interface ProjectService {
     //Lectores de atributos de ProjectService (getters)
         //Métodos de ProjectService
     List<Project> findAll();
+        List<ProjectDTO> findAllMiniatures();
         List<ProjectDTO> findRandomMiniatures();
         Page<Project> findProjectsPaginated(int page, int size);
     Optional<Project> findById(String id);

@@ -29,11 +29,15 @@ public class ProjectController {
     public List<Project> findAll(){
         return this.projectService.findAll();
     }
-        @GetMapping("/miniatures")
-        public List<ProjectDTO> findRandomMiniatures(){
-            return this.projectService.findRandomMiniatures();
+    @GetMapping({ "/miniatures", "miniatures/{option}" })
+    public List<ProjectDTO> getMiniatures(@PathVariable(name = "option", required = false) String option) {
+        if (option != null && option.equalsIgnoreCase("random")) {
+            return projectService.findRandomMiniatures();
         }
-        @GetMapping("/paginated")
+        return projectService.findAllMiniatures();
+    }
+
+    @GetMapping("/paginated")
         public ResponseEntity<Page<Project>> findAllPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size

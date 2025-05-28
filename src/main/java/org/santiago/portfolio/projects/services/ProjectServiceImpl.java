@@ -31,6 +31,11 @@ public class ProjectServiceImpl implements ProjectService{
         return this.repoProject.findAll();
     }
         @Override
+        @Transactional(readOnly = true)
+        public List<ProjectDTO> findAllMiniatures() {
+            return this.repoProject.findProjectDTOMiniatures();
+        }
+        @Override
         public List<ProjectDTO> findRandomMiniatures() {
             List<ProjectDTO> allProjectDTOMiniatures = this.repoProject.findProjectDTOMiniatures();
             if(allProjectDTOMiniatures.size() <= 3){    //Una vez haya probado, cambiar de 3 a 7
